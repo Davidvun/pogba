@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}My Courses{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">My Enrolled Courses</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for enrollment in enrollments %}
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        {% if enrollment.course.thumbnail %}<img src="{{ enrollment.course.thumbnail.url }}" class="w-full h-48 object-cover">
+        {% else %}<div class="w-full h-48 bg-gray-200 flex items-center justify-center"><span class="text-gray-400">No image</span></div>{% endif %}
+        <div class="p-6">
+            <h3 class="text-xl font-bold mb-2">{{ enrollment.course.title }}</h3>
+            <div class="mb-4">
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-blue-600 h-2 rounded-full" style="width: {{ enrollment.progress }}%"></div>
+                </div>
+                <p class="text-xs text-gray-500 mt-1">{{ enrollment.progress|floatformat:0 }}% complete</p>
+            </div>
+            <a href="{% url 'course_learn' enrollment.course.id %}" class="block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Continue Learning</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-span-3 text-center py-12">
+        <p class="text-gray-500 mb-4">You haven't enrolled in any courses yet</p>
+        <a href="{% url 'course_catalog' %}" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Browse Courses</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - E-Learning Platform{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl py-20 px-8 mb-12 text-center shadow-lg">
+    <h1 class="text-5xl font-extrabold text-gray-900 mb-6">Welcome to EduVault</h1>
+    <p class="text-2xl text-gray-700 mb-8 max-w-2xl mx-auto">Your gateway to quality education in Rwanda</p>
+    
+    {% if user.is_authenticated %}
+        <div class="space-x-4 mb-8">
+            {% if user.role == 'admin' %}
+                <a href="{% url 'admin_dashboard' %}" class="inline-block px-8 py-4 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition shadow-lg text-lg font-semibold">Go to Dashboard</a>
+            {% elif user.role == 'tutor' %}
+                <a href="{% url 'tutor_dashboard' %}" class="inline-block px-8 py-4 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition shadow-lg text-lg font-semibold">Go to Dashboard</a>
+            {% else %}
+                <a href="{% url 'student_dashboard' %}" class="inline-block px-8 py-4 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition shadow-lg text-lg font-semibold">Go to Dashboard</a>
+                <a href="{% url 'course_catalog' %}" class="inline-block px-8 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition shadow-lg text-lg font-semibold">Browse Courses</a>
+            {% endif %}
+        </div>
+        <p class="text-gray-600">Welcome back, <span class="font-semibold text-blue-700">{{ user.first_name|default:user.username }}</span>!</p>
+    {% else %}
+        <div class="space-x-4">
+            <a href="{% url 'register' %}" class="inline-block px-8 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition shadow-lg text-lg font-semibold">Get Started Free</a>
+            <a href="{% url 'login' %}" class="inline-block px-8 py-4 bg-blue-700 text-white rounded-xl hover:bg-blue-800 transition shadow-lg text-lg font-semibold">Login</a>
+        </div>
+    {% endif %}
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border-t-4 border-green-500">
+        <div class="text-5xl mb-4">🎓</div>
+        <h3 class="text-2xl font-bold mb-3 text-gray-900">For Students</h3>
+        <p class="text-gray-600 leading-relaxed">Access quality courses, track your progress, view materials online, and earn certificates</p>
+    </div>
+    <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border-t-4 border-blue-500">
+        <div class="text-5xl mb-4">👨‍🏫</div>
+        <h3 class="text-2xl font-bold mb-3 text-gray-900">For Tutors</h3>
+        <p class="text-gray-600 leading-relaxed">Create and manage courses, upload materials, engage with students, and track their performance</p>
+    </div>
+    <div class="p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition border-t-4 border-purple-500">
+        <div class="text-5xl mb-4">⚙️</div>
+        <h3 class="text-2xl font-bold mb-3 text-gray-900">For Admins</h3>
+        <p class="text-gray-600 leading-relaxed">Manage the platform, oversee users and courses, view analytics and insights</p>
+    </div>
+</div>
+
+<div class="mt-16 bg-blue-700 text-white rounded-2xl p-12 text-center shadow-xl">
+    <h2 class="text-3xl font-bold mb-4">Start Learning Today</h2>
+    <p class="text-xl mb-8 opacity-90">Join thousands of students already learning on EduVault</p>
+    {% if not user.is_authenticated %}
+        <a href="{% url 'register' %}" class="inline-block px-10 py-4 bg-white text-blue-700 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg font-semibold">Create Free Account</a>
+    {% else %}
+        <a href="{% url 'course_catalog' %}" class="inline-block px-10 py-4 bg-white text-blue-700 rounded-xl hover:bg-gray-100 transition shadow-lg text-lg font-semibold">Explore Courses</a>
+    {% endif %}
+</div>
+{% endblock %}

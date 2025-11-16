@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Quiz Results{% endblock %}
+{% block content %}
+<div class="max-w-3xl mx-auto">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold mb-4">Quiz Results</h1>
+        <div class="{% if attempt.is_passed %}bg-green-100{% else %}bg-red-100{% endif %} rounded-lg p-8 mb-6">
+            <p class="text-5xl font-bold {% if attempt.is_passed %}text-green-600{% else %}text-red-600{% endif %} mb-2">
+                {{ attempt.percentage|floatformat:1 }}%
+            </p>
+            <p class="text-2xl font-semibold {% if attempt.is_passed %}text-green-800{% else %}text-red-800{% endif %}">
+                {% if attempt.is_passed %}PASSED{% else %}FAILED{% endif %}
+            </p>
+            <p class="text-gray-600 mt-2">Score: {{ attempt.score }}/{{ attempt.total_points }} points</p>
+        </div>
+    </div>
+    <h2 class="text-2xl font-bold mb-4">Your Answers</h2>
+    <div class="space-y-4">
+        {% for sa in student_answers %}
+        <div class="bg-white rounded-lg shadow-md p-6 {% if sa.is_correct %}border-l-4 border-green-500{% else %}border-l-4 border-red-500{% endif %}">
+            <p class="font-bold mb-2">{{ sa.question.question_text }}</p>
+            <p class="text-sm {% if sa.is_correct %}text-green-600{% else %}text-red-600{% endif %}">
+                Your answer: {{ sa.selected_answer.answer_text }} {% if sa.is_correct %}✓{% else %}✗{% endif %}
+            </p>
+            <p class="text-sm text-gray-600">Points: {{ sa.points_earned }}/{{ sa.question.points }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-8 text-center">
+        <a href="{% url 'course_learn' attempt.quiz.video.unit.course.id %}" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Back to Course</a>
+    </div>
+</div>
+{% endblock %}

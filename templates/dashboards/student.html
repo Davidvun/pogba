@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="mb-8">
+    <h1 class="text-4xl font-bold text-gray-900 mb-2">Welcome Back, {{ user.first_name|default:user.username }}! 👋</h1>
+    <p class="text-gray-600">Ready to continue your learning journey?</p>
+</div>
+
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <!-- Enrolled Courses -->
+    <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform duration-200">
+        <div class="flex items-center justify-between mb-4">
+            <div class="bg-white/20 p-3 rounded-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+            </div>
+            <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Active</span>
+        </div>
+        <h3 class="text-sm font-medium mb-1 opacity-90">Enrolled Courses</h3>
+        <p class="text-4xl font-bold mb-3">{{ enrollments.count }}</p>
+        <a href="{% url 'my_courses' %}" class="inline-flex items-center text-sm font-medium hover:underline">
+            View all courses
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Available Courses -->
+    <div class="bg-gradient-to-br from-green-500 to-green-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform duration-200">
+        <div class="flex items-center justify-between mb-4">
+            <div class="bg-white/20 p-3 rounded-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </div>
+            <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Explore</span>
+        </div>
+        <h3 class="text-sm font-medium mb-1 opacity-90">Available Courses</h3>
+        <p class="text-4xl font-bold mb-3">{{ available_courses.count }}+</p>
+        <a href="{% url 'course_catalog' %}" class="inline-flex items-center text-sm font-medium hover:underline">
+            Browse catalog
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+
+    <!-- Learning Progress -->
+    <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-6 rounded-xl shadow-lg text-white transform hover:scale-105 transition-transform duration-200">
+        <div class="flex items-center justify-between mb-4">
+            <div class="bg-white/20 p-3 rounded-lg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+            </div>
+            <span class="text-sm font-semibold bg-white/20 px-3 py-1 rounded-full">Progress</span>
+        </div>
+        <h3 class="text-sm font-medium mb-1 opacity-90">Learning Progress</h3>
+        {% with first_enrollment=enrollments|first %}
+            <p class="text-4xl font-bold mb-3">
+                {{ first_enrollment.progress|default:0|floatformat:0 }}%
+            </p>
+        {% endwith %}
+        <p class="text-sm opacity-90">Keep up the great work!</p>
+    </div>
+</div>
+
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+    <!-- My Courses -->
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">My Courses</h2>
+                <p class="text-sm text-gray-500 mt-1">Continue where you left off</p>
+            </div>
+            <a href="{% url 'my_courses' %}" class="text-blue-600 hover:text-blue-700 text-sm font-medium inline-flex items-center">
+                View All
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="space-y-4 max-h-96 overflow-y-auto">
+            {% for enrollment in enrollments %}
+                <a href="{% url 'course_learn' enrollment.course.id %}" class="group block p-4 bg-gradient-to-r from-gray-50 to-gray-50/50 hover:from-blue-50 hover:to-blue-50/50 rounded-xl transition-all duration-200 border border-gray-100 hover:border-blue-200">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 group-hover:text-blue-900 mb-1">{{ enrollment.course.title }}</h3>
+                            <p class="text-xs text-gray-500">By {{ enrollment.course.tutor.username }}</p>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
+                            <div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: {{ enrollment.progress }}%"></div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-gray-600 font-medium">{{ enrollment.progress|floatformat:0 }}% complete</p>
+                            {% if enrollment.progress < 100 %}
+                                <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">In Progress</span>
+                            {% else %}
+                                <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-medium">Completed</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="text-center py-12">
+                    <div class="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 font-medium mb-2">No courses yet</p>
+                    <p class="text-gray-500 text-sm mb-4">Start your learning journey today!</p>
+                    <a href="{% url 'course_catalog' %}" class="inline-flex items-center px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 font-medium transition-all duration-200 shadow-md hover:shadow-lg">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        Browse Courses
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Discover New Courses -->
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+        <div class="flex items-center justify-between mb-6">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-900">Discover New Courses</h2>
+                <p class="text-sm text-gray-500 mt-1">Expand your knowledge</p>
+            </div>
+            <div class="bg-green-50 p-2 rounded-lg">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="space-y-4 max-h-96 overflow-y-auto">
+            {% for course in available_courses %}
+                <a href="{% url 'course_detail' course.slug %}" class="group block p-4 bg-gradient-to-r from-gray-50 to-gray-50/50 hover:from-green-50 hover:to-green-50/50 rounded-xl transition-all duration-200 border border-gray-100 hover:border-green-200">
+                    <div class="flex items-start justify-between mb-2">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-900 group-hover:text-green-900 mb-1">{{ course.title }}</h3>
+                            <p class="text-xs text-gray-500">By {{ course.tutor.username }}</p>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                    <div class="flex items-center justify-between mt-3">
+                        <div class="flex items-center space-x-3 text-xs text-gray-500">
+                            {% if course.lessons_count %}
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    {{ course.lessons_count }} lessons
+                                </span>
+                            {% endif %}
+                        </div>
+                        {% if course.is_free %}
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                                <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                                Free
+                            </span>
+                        {% else %}
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">
+                                RWF {{ course.price }}
+                            </span>
+                        {% endif %}
+                    </div>
+                </a>
+            {% empty %}
+                <div class="text-center py-12">
+                    <svg class="w-12 h-12 text-gray-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <p class="text-gray-500">No courses available at the moment</p>
+                </div>
+            {% endfor %}
+        </div>
+        {% if available_courses %}
+            <div class="mt-6 pt-4 border-t border-gray-100">
+                <a href="{% url 'course_catalog' %}" class="block text-center py-2.5 bg-gradient-to-r from-green-50 to-green-50/50 hover:from-green-100 hover:to-green-100/50 text-green-700 font-medium rounded-lg transition-all duration-200 border border-green-100 hover:border-green-200">
+                    View all {{ available_courses.count }} courses →
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Quick Tips Section -->
+<div class="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-xl border border-blue-100">
+    <div class="flex items-start space-x-4">
+        <div class="bg-blue-100 p-3 rounded-lg flex-shrink-0">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+            </svg>
+        </div>
+        <div>
+            <h3 class="font-bold text-gray-900 mb-1">💡 Learning Tip</h3>
+            <p class="text-gray-700 text-sm">Set aside dedicated time each day for learning. Consistency is key to mastering new skills!</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

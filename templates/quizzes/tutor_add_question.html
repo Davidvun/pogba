@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Add Question{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">Add Question to {{ quiz.title }}</h1>
+<form method="post" class="bg-white shadow-md rounded-lg p-8 max-w-2xl">
+    {% csrf_token %}
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Question</label>
+        <textarea name="question_text" required rows="3" class="w-full px-3 py-2 border rounded-md"></textarea>
+    </div>
+    <div class="grid grid-cols-3 gap-6 mb-6">
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Type</label>
+            <select name="question_type" class="w-full px-3 py-2 border rounded-md">
+                <option value="mcq">Multiple Choice</option>
+                <option value="true_false">True/False</option>
+            </select>
+        </div>
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Points</label>
+            <input type="number" name="points" value="1" class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Order</label>
+            <input type="number" name="order" value="{{ suggested_order }}" class="w-full px-3 py-2 border rounded-md">
+        </div>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-4">Answers</label>
+        <div id="answers-container">
+            <div class="flex gap-4 mb-3">
+                <input type="text" name="answer_text[]" placeholder="Answer 1" class="flex-1 px-3 py-2 border rounded-md">
+                <label class="flex items-center"><input type="checkbox" name="is_correct[]" value="0" class="mr-2">Correct</label>
+            </div>
+            <div class="flex gap-4 mb-3">
+                <input type="text" name="answer_text[]" placeholder="Answer 2" class="flex-1 px-3 py-2 border rounded-md">
+                <label class="flex items-center"><input type="checkbox" name="is_correct[]" value="1" class="mr-2">Correct</label>
+            </div>
+            <div class="flex gap-4 mb-3">
+                <input type="text" name="answer_text[]" placeholder="Answer 3" class="flex-1 px-3 py-2 border rounded-md">
+                <label class="flex items-center"><input type="checkbox" name="is_correct[]" value="2" class="mr-2">Correct</label>
+            </div>
+            <div class="flex gap-4 mb-3">
+                <input type="text" name="answer_text[]" placeholder="Answer 4" class="flex-1 px-3 py-2 border rounded-md">
+                <label class="flex items-center"><input type="checkbox" name="is_correct[]" value="3" class="mr-2">Correct</label>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-between">
+        <a href="{% url 'tutor_edit_quiz' quiz.id %}" class="px-6 py-2 border rounded-md hover:bg-gray-50">Cancel</a>
+        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Add Question</button>
+    </div>
+</form>
+{% endblock %}

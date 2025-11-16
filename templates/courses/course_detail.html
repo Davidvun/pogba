@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2">
+        <h1 class="text-4xl font-bold mb-4">{{ course.title }}</h1>
+        <p class="text-gray-600 mb-6">By {{ course.tutor.username }}</p>
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-bold mb-4">About this course</h2>
+            <p class="text-gray-700">{{ course.description }}</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-bold mb-4">Course Content</h2>
+            {% for unit in units %}
+            <div class="mb-4 pb-4 border-b">
+                <h3 class="text-lg font-bold">Unit {{ unit.order }}: {{ unit.title }}</h3>
+                <p class="text-sm text-gray-600 mt-2">{{ unit.videos.count }} videos, {{ unit.materials.count }} materials</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <div class="bg-white rounded-lg shadow-lg p-6 sticky top-4">
+            {% if course.is_free %}<p class="text-3xl font-bold text-green-600 mb-4">Free</p>
+            {% else %}<p class="text-3xl font-bold text-blue-600 mb-4">RWF {{ course.price }}</p>{% endif %}
+            {% if is_enrolled %}
+            <a href="{% url 'course_learn' course.id %}" class="block w-full text-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 mb-4">Go to Course</a>
+            {% elif user.is_authenticated %}
+            <a href="{% url 'checkout' course.id %}" class="block w-full text-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mb-4">Enroll Now</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="block w-full text-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 mb-4">Login to Enroll</a>
+            {% endif %}
+            <div class="space-y-2 text-sm text-gray-600">
+                <p>✓ {{ course.get_total_units }} units</p>
+                <p>✓ Lifetime access</p>
+                <p>✓ Certificate of completion</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Edit Quiz{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold">Edit Quiz: {{ quiz.title }}</h1>
+    <a href="{% url 'tutor_add_question' quiz.id %}" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Add Question</a>
+</div>
+<form method="post" class="bg-white shadow-md rounded-lg p-8 mb-6">
+    {% csrf_token %}
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Quiz Title</label>
+        <input type="text" name="title" value="{{ quiz.title }}" required class="w-full px-3 py-2 border rounded-md">
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Description</label>
+        <textarea name="description" rows="3" class="w-full px-3 py-2 border rounded-md">{{ quiz.description }}</textarea>
+    </div>
+    <div class="grid grid-cols-3 gap-6 mb-6">
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Pass %</label>
+            <input type="number" name="pass_percentage" value="{{ quiz.pass_percentage }}" class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Time (min)</label>
+            <input type="number" name="time_limit" value="{{ quiz.time_limit }}" class="w-full px-3 py-2 border rounded-md">
+        </div>
+        <div>
+            <label class="flex items-center mt-8"><input type="checkbox" name="is_active" {% if quiz.is_active %}checked{% endif %} class="mr-2">Active</label>
+        </div>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Deadline (Optional)</label>
+        <input type="datetime-local" name="deadline" value="{% if quiz.deadline %}{{ quiz.deadline|date:'Y-m-d\TH:i' }}{% endif %}" class="w-full px-3 py-2 border rounded-md">
+        <p class="text-sm text-gray-500 mt-1">Students cannot take the quiz after this deadline. Leave empty for no deadline.</p>
+    </div>
+    <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update Quiz</button>
+</form>
+<div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold mb-4">Questions ({{ questions.count }})</h2>
+    {% for q in questions %}
+    <div class="p-4 bg-gray-50 rounded mb-4">
+        <div class="flex justify-between items-start">
+            <div class="flex-1">
+                <p class="font-bold">Q{{ forloop.counter }}: {{ q.question_text }}</p>
+                <div class="mt-2 space-y-1">
+                    {% for answer in q.answers.all %}
+                    <p class="text-sm {% if answer.is_correct %}text-green-600 font-semibold{% else %}text-gray-600{% endif %}">
+                        {{ forloop.counter }}. {{ answer.answer_text }} {% if answer.is_correct %}✓{% endif %}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <a href="{% url 'tutor_delete_question' q.id %}" class="text-red-600 hover:text-red-900 text-sm" onclick="return confirm('Delete?')">Delete</a>
+        </div>
+    </div>
+    {% empty %}
+    <p class="text-gray-500 text-center py-4">No questions yet</p>
+    {% endfor %}
+</div>
+{% endblock %}

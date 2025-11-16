@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Edit Course{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">Edit Course: {{ course.title }}</h1>
+<form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded-lg p-8 max-w-2xl">
+    {% csrf_token %}
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Title</label>
+        <input type="text" name="title" value="{{ course.title }}" required class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Description</label>
+        <textarea name="description" required rows="4" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">{{ course.description }}</textarea>
+    </div>
+    <div class="grid grid-cols-2 gap-6 mb-6">
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Tutor</label>
+            <select name="tutor" required class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+                {% for tutor in tutors %}<option value="{{ tutor.id }}" {% if tutor.id == course.tutor.id %}selected{% endif %}>{{ tutor.username }}</option>{% endfor %}
+            </select>
+        </div>
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Category</label>
+            <select name="category" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+                <option value="">Select category</option>
+                {% for cat in categories %}<option value="{{ cat.id }}" {% if course.category.id == cat.id %}selected{% endif %}>{{ cat.name }}</option>{% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-6 mb-6">
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Price</label>
+            <input type="number" name="price" step="0.01" value="{{ course.price }}" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+            <label class="block text-gray-700 font-bold mb-2">Thumbnail</label>
+            <input type="file" name="thumbnail" accept="image/*" class="w-full px-3 py-2 border rounded-md">
+        </div>
+    </div>
+    <div class="mb-6">
+        <label class="flex items-center"><input type="checkbox" name="is_free" {% if course.is_free %}checked{% endif %} class="mr-2">Free course</label>
+        <label class="flex items-center mt-2"><input type="checkbox" name="is_published" {% if course.is_published %}checked{% endif %} class="mr-2">Published</label>
+    </div>
+    <div class="flex justify-between">
+        <a href="{% url 'admin_manage_courses' %}" class="px-6 py-2 border rounded-md hover:bg-gray-50">Cancel</a>
+        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update Course</button>
+    </div>
+</form>
+{% endblock %}

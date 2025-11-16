@@ -1,0 +1,218 @@
+📚 E-Learning Platform Technical Specification
+👥 User Roles
+Admin
+
+
+Tutor
+
+
+Student
+
+
+
+🔐 Core System Features
+Authentication & Authorization
+
+
+Role-based login (Admin, Tutor, Student)
+
+
+Single device login enforcement
+
+
+Email/phone verification (optional)/ This can be mandatory
+
+
+Course Access Control
+
+
+Paid course purchase system
+
+
+Material access restrictions (free/paid)
+
+
+The login period must be customized to 3 months from the login date.
+
+
+Content Management
+
+
+Courses, Units, Videos, and Files management
+
+
+Quiz and Grading System
+
+
+Auto-generated quizzes after videos
+
+
+Auto-grading with instant feedback
+
+Provision of the term report
+
+
+Attendance Tracking
+
+
+Detect if student is actively watching video
+Generating lesson attendance and the monthly attendance list.
+
+
+Leaderboard System
+
+
+Unit-wise performance ranking
+
+
+
+🛠️ Admin Features
+Dashboard with analytics (user count, sales, engagement)
+
+
+Manage Tutors and Students (create, edit, suspend)
+
+
+Approve/Reject tutor registration or content
+
+
+Course & Unit Management:
+
+
+Create/edit/delete courses and units
+
+
+Tag free or paid materials
+
+
+Payment & Transaction Management
+
+
+View student purchases and payment status
+
+
+Content Moderation
+
+
+Review and approve uploaded materials/videos
+
+
+Manage Quizzes
+
+
+Add/edit question bank per video
+
+
+View Leaderboards
+
+
+Per course/unit performance summary
+
+
+System Logs
+
+
+User activity and login tracking
+
+
+
+🎓 Tutor Features
+Dashboard with metrics (views, student engagement)
+
+
+Course & Unit Creation
+
+
+Add videos with preview thumbnails
+
+
+Upload documents (PDFs, Slides, Docs)
+
+
+Set materials as Free or Paid
+
+
+Add quizzes per video
+
+
+At least 5 random questions per video
+
+
+Student Insights
+
+
+View students who enrolled in their courses
+
+
+Track student progress and quiz results
+
+
+Edit/Delete their content
+
+
+Receive feedback or comments from students
+
+
+
+🧑‍🎓 Student Features
+Browse Courses
+
+
+Filter by category, tutor, price (free/paid)
+
+
+Purchase Courses
+
+
+Secure payment gateway integration
+
+
+Access Purchased Content
+
+
+Stream videos (single device)
+
+
+Download allowed materials
+
+
+Quiz Participation
+
+
+Auto-prompted quiz after each video
+
+
+Get instant grading and feedback
+
+
+Attendance Tracking
+
+
+Must stay active on screen during videos
+
+
+View Progress
+
+
+Track completed units and quiz scores
+
+
+View Leaderboards
+
+
+Per unit and overall ranking with peers
+
+
+Comment or Rate Courses (optional)
+
+
+
+📶 Other Technical Requirements
+Streaming Engine: Prevent video download; support streaming only
+
+
+Notifications: Email/SMS alerts for enrollments, quiz scores
+
+
+Responsive UI: Works on both desktop and mobile
+

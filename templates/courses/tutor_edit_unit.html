@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Edit Unit{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold mb-8">Edit Unit: {{ unit.title }}</h1>
+<form method="post" class="bg-white shadow-md rounded-lg p-8 max-w-2xl">
+    {% csrf_token %}
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Title</label>
+        <input type="text" name="title" value="{{ unit.title }}" required class="w-full px-3 py-2 border rounded-md">
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Description</label>
+        <textarea name="description" rows="4" class="w-full px-3 py-2 border rounded-md">{{ unit.description }}</textarea>
+    </div>
+    <div class="mb-6">
+        <label class="block text-gray-700 font-bold mb-2">Order</label>
+        <input type="number" name="order" value="{{ unit.order }}" class="w-full px-3 py-2 border rounded-md">
+    </div>
+    <div class="flex justify-between">
+        <a href="{% url 'tutor_course_detail' unit.course.id %}" class="px-6 py-2 border rounded-md hover:bg-gray-50">Cancel</a>
+        <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update Unit</button>
+    </div>
+</form>
+{% endblock %}

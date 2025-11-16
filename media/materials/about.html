@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Perfect Marketing Company Ltd - Our mission, vision, and commitment to elevating brands to perfection in Rwanda.">
+    <title>About Us - Perfect Marketing Company Ltd</title>
+    <link rel="icon" type="image/jpeg" href="Fav1.png">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pmc-blue': '#1e40af',
+                        'pmc-pink': '#ec4899',
+                        'pmc-dark-blue': '#1e3a8a',
+                        'pmc-light-pink': '#f9a8d4',
+                        'pmc-accent': '#06b6d4',
+                        'pmc-success': '#10b981'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-poppins bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-xl fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center">
+                            <img src="Logo1.png" alt="PMC Logo" class="h-14 w-auto hover:scale-105 transition-transform duration-300">
+                            <div class="ml-4 hidden lg:block">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-pmc-pink px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-50">Home</a>
+                        <a href="about.html" class="text-pmc-blue font-semibold hover:text-pmc-pink px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-50">About</a>
+                        <a href="services.html" class="text-gray-700 hover:text-pmc-pink px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-50">Services</a>
+                        <a href="team.html" class="text-gray-700 hover:text-pmc-pink px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-50">Team</a>
+                        <a href="gallery.html" class="text-gray-700 hover:text-pmc-pink px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-50">Gallery</a>
+                        <a href="contact.html" class="bg-gradient-to-r from-pmc-pink to-pmc-blue text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">Contact Us</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-pmc-pink focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t shadow-lg">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 hover:text-pmc-pink rounded-lg transition-colors">Home</a>
+                <a href="about.html" class="block px-4 py-3 text-pmc-blue font-semibold rounded-lg">About</a>
+                <a href="services.html" class="block px-4 py-3 text-gray-700 hover:text-pmc-pink rounded-lg transition-colors">Services</a>
+                <a href="team.html" class="block px-4 py-3 text-gray-700 hover:text-pmc-pink rounded-lg transition-colors">Team</a>
+                <a href="portfolio.html" class="block px-4 py-3 text-gray-700 hover:text-pmc-pink rounded-lg transition-colors">Portfolio</a>
+                <a href="contact.html" class="block px-4 py-3 text-gray-700 hover:text-pmc-pink rounded-lg transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-pmc-blue to-pmc-dark-blue text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="Professional_marketing_team_meeting_2089f7fe.png" alt="Team" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <h1 class="text-5xl sm:text-6xl font-black mb-6">
+                About <span class="text-pmc-light-pink">PMC</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-200 max-w-3xl mx-auto">
+                Discover our story, mission, and commitment to elevating brands to perfection through innovative marketing excellence.
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="inline-flex items-center bg-pmc-pink/10 px-4 py-2 rounded-full text-pmc-pink font-semibold mb-6">
+                        <i class="fas fa-book-open mr-2"></i>
+                        Our Story
+                    </div>
+                    <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
+                        Building Excellence in <span class="bg-gradient-to-r from-pmc-blue to-pmc-pink bg-clip-text text-transparent">Marketing</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Perfect Marketing Company Ltd was founded with a simple yet powerful vision: to elevate every brand we work with to their highest potential. Based in the vibrant city of Kigali, Rwanda, we have established ourselves as a leading marketing agency that combines creativity, strategy, and innovation.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our journey began with the belief that every business, regardless of size, deserves access to world-class marketing solutions. Today, we proudly serve clients across various industries, helping them achieve remarkable growth and market success.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-pmc-blue to-pmc-pink p-6 rounded-2xl text-white text-center">
+                            <div class="text-3xl font-black mb-2">2024</div>
+                            <div class="text-sm">Founded</div>
+                        </div>
+                        <div class="bg-gradient-to-r from-pmc-pink to-pink-600 p-6 rounded-2xl text-white text-center">
+                            <div class="text-3xl font-black mb-2">15+</div>
+                            <div class="text-sm">Projects Completed</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pmc-blue/20 to-pmc-pink/20 rounded-3xl transform rotate-3"></div>
+                    <img src="Creative_marketing_brainstorming_session_3a540b00.jpeg" alt="Creative Session" class="relative rounded-3xl shadow-2xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
+                    Our <span class="bg-gradient-to-r from-pmc-blue to-pmc-pink bg-clip-text text-transparent">Purpose</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Mission -->
+                <div class="bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-pmc-blue to-pmc-pink rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black text-gray-900 mb-6">Our Mission</h3>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        To empower businesses with innovative marketing strategies that drive sustainable growth, build lasting customer relationships, and create meaningful brand experiences that resonate with target audiences.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-pmc-blue">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Strategic Innovation</span>
+                        </div>
+                        <div class="flex items-center text-pmc-blue">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Client Success Focus</span>
+                        </div>
+                        <div class="flex items-center text-pmc-blue">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Measurable Results</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Vision -->
+                <div class="bg-gradient-to-br from-pmc-blue to-pmc-dark-blue rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 text-white">
+                    <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-eye text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black mb-6">Our Vision</h3>
+                    <p class="text-lg text-gray-200 leading-relaxed mb-6">
+                        To be Rwanda's premier marketing agency, recognized for transforming businesses through creative excellence, strategic thinking, and unwavering commitment to client success across all industries.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="flex items-center text-pmc-light-pink">
+                            <i class="fas fa-star mr-3"></i>
+                            <span>Market Leadership</span>
+                        </div>
+                        <div class="flex items-center text-pmc-light-pink">
+                            <i class="fas fa-star mr-3"></i>
+                            <span>Creative Excellence</span>
+                        </div>
+                        <div class="flex items-center text-pmc-light-pink">
+                            <i class="fas fa-star mr-3"></i>
+                            <span>Industry Recognition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center bg-pmc-pink/10 px-4 py-2 rounded-full text-pmc-pink font-semibold mb-6">
+                    <i class="fas fa-heart mr-2"></i>
+                    Our Core Values
+                </div>
+                <h2 class="text-4xl sm:text-5xl font-black text-gray-900 mb-6">
+                    What Drives <span class="bg-gradient-to-r from-pmc-blue to-pmc-pink bg-clip-text text-transparent">Us Forward</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Our values shape everything we do and guide us in delivering exceptional marketing solutions for our clients.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Excellence -->
+                <div class="group text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-pmc-blue to-pmc-pink rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-award text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Excellence</h3>
+                    <p class="text-gray-600">
+                        We strive for perfection in every project, delivering high-quality solutions that exceed expectations.
+                    </p>
+                </div>
+                
+                <!-- Innovation -->
+                <div class="group text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-pmc-pink to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
+                    <p class="text-gray-600">
+                        We embrace creativity and cutting-edge approaches to solve complex marketing challenges.
+                    </p>
+                </div>
+                
+                <!-- Integrity -->
+                <div class="group text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-pmc-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Integrity</h3>
+                    <p class="text-gray-600">
+                        We build trust through transparency, honesty, and ethical practices in all our relationships.
+                    </p>
+                </div>
+                
+                <!-- Growth -->
+                <div class="group text-center">
+                    <div class="w-20 h-20 bg-gradient-to-r from-pmc-success to-green-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Growth</h3>
+                    <p class="text-gray-600">
+                        We are committed to continuous learning and helping our clients achieve sustainable growth.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-pmc-blue to-pmc-dark-blue text-white relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-1/2 h-full opacity-20">
+            <img src="Digital_marketing_workspace_analytics_1c63cef7.jpeg" alt="Analytics" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl sm:text-5xl font-black mb-6">
+                Ready to Work With <span class="text-pmc-light-pink">Us?</span>
+            </h2>
+            <p class="text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                Let's discuss how we can help elevate your brand to perfection with our proven marketing strategies and creative solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="inline-flex items-center bg-pmc-pink hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-phone mr-3"></i>
+                    Get Started Today
+                    <i class="fas fa-arrow-right ml-3"></i>
+                </a>
+                <a href="services.html" class="inline-flex items-center border-2 border-white text-white hover:bg-white hover:text-pmc-blue font-bold py-4 px-8 rounded-full transition-all duration-300">
+                    <i class="fas fa-eye mr-3"></i>
+                    View Our Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Company Info -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center mb-6">
+                        <img src="Logo1.png" alt="PMC Logo" class="h-12 w-auto mr-4">
+                        
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed max-w-md">
+                        Elevating brands to perfection through innovative marketing strategies, creative solutions, and exceptional service delivery in Rwanda and beyond.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/perfect_protocol_serviceagency?igsh=NTd1bXltNWlkMmR6" class="w-10 h-10 bg-pmc-pink hover:bg-pink-600 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1AvR8uKJx1/" class="w-10 h-10 bg-pmc-blue hover:bg-blue-700 rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://vm.tiktok.com/ZMALamdGk/" class="w-10 h-10 bg-gray-800 hover:bg-black rounded-full flex items-center justify-center transition-colors">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-pmc-pink transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-pmc-pink transition-colors">Our Services</a></li>
+                        <li><a href="team.html" class="text-gray-400 hover:text-pmc-pink transition-colors">Our Team</a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-pmc-pink transition-colors">Gallery</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-pmc-pink transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Info</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-pmc-pink mr-3"></i>
+                            <span class="text-gray-400">Kigali, Nyarugenge, Rwanda</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-pmc-pink mr-3"></i>
+                            <a href="tel:+250789019599" class="text-gray-400 hover:text-pmc-pink transition-colors">+250 789 019 599</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-pmc-pink mr-3"></i>
+                            <a href="mailto:info@perfectmarketingco.rw" class="text-gray-400 hover:text-pmc-pink transition-colors">info@perfectmarketing.rw</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Perfect Marketing Company Ltd. All rights reserved. | Elevate your brand to perfection.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
